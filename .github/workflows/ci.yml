@@ -27,8 +27,6 @@ jobs:
 
     # 🔹 Run tests
     - name: Run tests
-      env:
-        MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}  # 🔹 secret variable
       run: |
-        echo "The secret value is: $MY_SECRET_KEY"
+        echo "The secret value is: ${{ secrets.MY_SECRET_KEY }}"
         pytest
