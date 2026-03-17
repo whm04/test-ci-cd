@@ -25,6 +25,17 @@ jobs:
     - name: Lint code with flake8
       run: flake8 .
 
+    - name: Verify secret is set
+      run: |
+        if [ -z "$MY_SECRET_KEY" ]; then
+          echo "❌ Secret is NOT set or is empty"
+          exit 1
+        else
+          echo "✅ Secret is set (length: ${#MY_SECRET_KEY})"
+        fi
+      env:
+        MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
+        
     # 🔹 Run tests
     - name: Run tests
       run: |
